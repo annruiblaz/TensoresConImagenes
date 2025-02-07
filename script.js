@@ -18,8 +18,30 @@ const tensorRGB = tf.tidy( () => {
 
     // ** El -1 en slice (start, size) se refiere a que tome todo el tamaño disponible en esa dimensión
     // Y eliminamos el canal alfa (q es la últ dimensión)
-    return tensor.slice([0, 0, 0], [-1, -1, 3]) //Para mantener solo el RGB
+    return tensor.slice([0, 0, 0], [-1, -1, 3]); //Para mantener solo el RGB
 });
+
+/*
+    Tabla d valores:
+    start = [0, 0, 0]
+        0 en altura -> Comenzamos dsd la primera fila
+        0 en el ancho -> Comenzamos dsd la primera columna
+        0 en el canal -> Comenzamos desde el canal rojo
+
+    size = [-1, -1, 3]
+        -1 en altura -> Mantiene todas las filas
+        -1 en el ancho -> Mantiene todas las columnas
+        3 en el canal -> Toma solo los 3 primeros canales (RGB) dejando el alpha
+*/
+
+//Mostramos en consola la forma del tensor q debe ser [height, width, 3]
+console.log(tensorRGB.shape());
+
+//Convertir a array para inspección
+tensorRGB.array().then( array => console.log(array));
+
+//Liberamos el espacio de memoria q utiliza el tensor
+tensorRGB.dispose();
 
 
 
