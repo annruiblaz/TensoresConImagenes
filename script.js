@@ -35,7 +35,7 @@ const tensorRGB = tf.tidy( () => {
 */
 
 //Mostramos en consola la forma del tensor q debe ser [height, width, 3]
-console.log(tensorRGB.shape());
+console.log(tensorRGB.shape);
 
 //Convertir a array para inspección
 tensorRGB.array().then( array => console.log(array));
